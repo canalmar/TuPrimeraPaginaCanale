@@ -18,13 +18,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from core.views import profile_redirect
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),                  # Ruta raíz: home
+    path("accounts/", include("django.contrib.auth.urls")),
     path('productos/', include('product.urls')),
     path('clientes/', include('client.urls')),
     path('blog/', include('blog.urls')),
+    path('accounts/profile/', profile_redirect, name='profile_redirect'),
 ]
 
 if settings.DEBUG:

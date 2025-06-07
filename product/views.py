@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 def product_list(request):
-    return HttpResponse("Listado de productos (vista temporal)")
+    return render(request, 'product/product_list.html')
+
 

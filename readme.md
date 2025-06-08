@@ -11,7 +11,7 @@ _E‑commerce y blog para una librería física & online._
 4. [Instalación rápida](#instalación-rápida)
 5. [Uso](#uso)
 6. [Flujo de permisos](#flujo-de-permisos)
-7. [Capturas](#capturas)
+7. [Consideraciones](#consideraciones)
 8. [Autor](#autor)
 
 ---
@@ -96,7 +96,7 @@ python manage.py runserver
 | URL | Descripción |
 |-----|-------------|
 | `/` | Home |
-| `/productos/ catalogo/ ` | Catálogo público |
+| `/productos/catalogo/ ` | Catálogo público |
 | `/blog/posts/` | Blog público |
 | `/blog/posts/create/` | Crear post (login requerido) |
 | `/productos/list/` | CRUD productos (staff) |
@@ -108,12 +108,16 @@ python manage.py runserver
 | Rol | Acceso |
 |-----|--------|
 | Visitante | Home, Catálogo, Blog |
-| Usuario autenticado | + Crear nuevo post | *Ejemplo: paularamirez password: cliente1*
-| Empleado (`is_staff`) | + Gestión productos, clientes, editar / eliminar cualquier post | *Ejemplo: mariapaz password: empleado1*
+| Usuario autenticado | + Crear nuevo post | 
+| Empleado (`is_staff`) | + Gestión productos, clientes, editar / eliminar cualquier post | 
 
 Sesiones expiran al cerrar el navegador.
 
 ---
+
+## Consideraciones
+Para DEMO TP subo a github db.sqlite3 y media
+
 
 ## Autor
 **Marisa Canale** – Coderhouse Python & Django 2025

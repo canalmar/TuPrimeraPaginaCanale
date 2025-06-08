@@ -1,6 +1,6 @@
-# Tienda de Historias — Django Project (Coderhouse • Entrega 3)
+# Tienda de Historias — Django Project (Coderhouse • Entrega 3)
 
-_E-commerce y blog para una librería física & online._
+_E‑commerce y blog para una librería física & online._
 
 ---
 
@@ -18,15 +18,14 @@ _E-commerce y blog para una librería física & online._
 
 ## Descripción
 
-**Tienda de Historias** es la tercera entrega de Coderhouse “Tu primera página web”.  
-Incluye:
+**Tienda de Historias** implementa:
 
 | Módulo | Funcionalidad |
 |--------|---------------|
-| **Core**  | Home, navbar Bootstrap, login/logout, mensajes flash. |
-| **Product** | Catálogo público (cards) + CRUD completo para _staff_ (tabla con búsqueda). |
-| **Client** | CRUD de clientes para _staff_ (tabla, búsqueda, formularios). |
-| **Blog** | Publicaciones públicas (cards con búsqueda) + CRUD para _staff_ con imágenes y categorías. |
+| **Core**    | Home, navbar, login/logout, mensajes flash. |
+| **Product** | Catálogo público (+ búsqueda) y CRUD de productos para empleados. |
+| **Client**  | CRUD de clientes para empleados. |
+| **Blog**    | Blog público + cualquier usuario autenticado puede crear posts; autores o empleados pueden editar/eliminar. |
 
 ---
 
@@ -34,97 +33,64 @@ Incluye:
 
 ```text
 TiendaHistorias/
-│
-├── core/       # Página de inicio y navegación
-│├── templates/core/index.html
-│└── views.py
-│
+├── core/
 ├── product/
-│├── models.py          # Product, Category
-│├── views.py           # CRUD + catálogo
-│├── templates/product/
-│└── forms.py
-│
 ├── client/
-│├── models.py          # Client
-│├── views.py           # CRUD
-│├── templates/client/
-│└── forms.py
-│
 ├── blog/
-│├── models.py          # Post, Category
-│├── views.py           # CRUD + list
-│├── templates/blog/
-│└── forms.py
-│
-├── static/             # CSS, imágenes (login, no-image)
-└── templates/base.html # Layout Bootstrap común
+├── static/
+└── templates/base.html
+```
 
-Tecnologías
-Python 3.13
+---
 
-Django 5.2
+## Tecnologías
+Django 5.2 · Python 3.13 · Bootstrap 5.3
 
-Bootstrap 5.3 (CDN)
+---
 
-SQLite 3 (dev)
+## Instalación rápida
 
-Git / GitHub
-
-Instalación rápida
-# 1. Clonar el repo
+```bash
 git clone https://github.com/<usuario>/TiendaHistorias.git
 cd TiendaHistorias
-
-# 2. Crear y activar entorno
-python -m venv .venv
-source .venv/Scripts/activate   # Linux/macOS: source .venv/bin/activate
-
-# 3. Instalar dependencias
+python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-
-# 4. Migraciones + usuario admin
 python manage.py migrate
 python manage.py createsuperuser
-
-# 5. Cargar categorías demo (opcional, vía admin)
 python manage.py runserver
-# abrir http://127.0.0.1:8000/admin/
+```
 
-Uso
-| URL                   | Rol       | Descripción                           |
-| --------------------- | --------- | ------------------------------------- |
-| `/`                   | Público   | Página de inicio.                     |
-| `/accounts/login/`    | Público   | Inicio de sesión.                     |
-| `/productos/`         | Público   | Catálogo de productos (con búsqueda). |
-| `/clientes/clients/`  | **Staff** | CRUD de clientes.                     |
-| `/productos/list/`    | **Staff** | CRUD de productos.                    |
-| `/blog/posts/`        | Público   | Blog con buscador.                    |
-| `/blog/posts/create/` | **Staff** | Crear post (imagen + categoría).      |
+---
 
-Nota: las vistas de gestión requieren usuarios con is_staff=True.
+## Uso
 
-Flujo de permisos
-Visitante: navega Home, Catálogo y Blog. Sin login.
+| URL | Descripción |
+|-----|-------------|
+| `/` | Home |
+| `/productos/` | Catálogo público |
+| `/blog/posts/` | Blog público |
+| `/blog/posts/create/` | Crear post (login requerido) |
+| `/productos/list/` | CRUD productos (staff) |
+| `/clientes/clients/` | CRUD clientes (staff) |
 
-Cliente: (futuro) usuario estándar; hoy solo vistas públicas.
+---
 
-Empleado (staff): accede a CRUD de Product, Client y Blog.
+## Flujo de permisos
 
-Autenticación gestionada con Django contrib.auth; las sesiones expiran al cerrar el navegador (SESSION_EXPIRE_AT_BROWSER_CLOSE = True).
+| Rol | Acceso |
+|-----|--------|
+| Visitante | Home, Catálogo, Blog |
+| Usuario autenticado | + Crear nuevo post |
+| Empleado (`is_staff`) | + Gestión productos, clientes, editar / eliminar cualquier post |
 
-Capturas
-Home	Catálogo
+Sesiones expiran al cerrar el navegador.
 
-(Añade tus screenshots en static/README/ y actualiza los nombres.)
+---
 
-Autor
-Marisa Canale 
-Proyecto desarrollado en el marco de Coderhouse — Python & Django 2025.
+## Capturas
+_Añade imágenes en `static/README/`._
 
+---
 
-> ### Cómo usarlo
-> 1. Graba el contenido como `README.md` en la raíz del proyecto.  
-> 2. (Opcional) coloca un par de capturas en `static/README/` con los nombres usados en la sección de **Capturas** o ajusta los paths.  
-> 3. `git add README.md static/README/*` y `git commit -m "Add full README"`.
-
+## Autor
+**Marisa Canale** – Coderhouse Python & Django 2025

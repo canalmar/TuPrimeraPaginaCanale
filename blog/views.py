@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
 from django.contrib import messages
-from django.contrib.auth.decorators import user_passes_test
-
+from django.contrib.auth.decorators import user_passes_test, login_required
 from .models import Post
 from .forms import PostForm
 
@@ -35,14 +34,21 @@ def post_detail(request, post_id):
 
 
 # ───────────────────────────────────────
-# CRUD (STAFF)
+# CRUD
 # ───────────────────────────────────────
-@user_passes_test(is_staff)
+# ───CREATE─────────
+@login_required
 def post_create(request):
+    """
+    Crea un nuevo post.
+    - cualquier usuario autenticado
+    """
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            post = form.save(commit=False)
+            post.author = request.user.get_full_name() or request.user.username
+            post.save()
             messages.success(request, "Publicación creada correctamente.")
             return redirect("blog:post_list")
     else:
@@ -50,9 +56,12 @@ def post_create(request):
     return render(request, "blog/post_form.html", {"form": form})
 
 
-@user_passes_test(is_staff)
+@login_required
 def post_edit(request, post_id):
     post = get_object_or_404(Post, id=post_id)
+    if not (request.user.is_staff or post.author == (request.user.get_full_name() or request.user.username)):
+        messages.error(request, "No tienes permiso para editar este post.")
+        return redirect("blog:post_list")
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
@@ -64,9 +73,12 @@ def post_edit(request, post_id):
     return render(request, "blog/post_form.html", {"form": form})
 
 
-@user_passes_test(is_staff)
+@login_required
 def post_delete(request, post_id):
     post = get_object_or_404(Post, id=post_id)
+    if not (request.user.is_staff or post.author == (request.user.get_full_name() or request.user.username)):
+        messages.error(request, "No tienes permiso para eliminar este post.")
+        return redirect("blog:post_list")
     if request.method == "POST":
         post.delete()
         messages.success(request, "Publicación eliminada correctamente.")

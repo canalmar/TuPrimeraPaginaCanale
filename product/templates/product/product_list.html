@@ -48,10 +48,12 @@
               {% endif %}
             </td>
             <td class="text-center">
-              <a href="{% url 'product:product_edit' product.id %}"
-                 class="btn btn-sm btn-outline-primary me-2">Editar</a>
-              <a href="{% url 'product:product_delete' product.id %}"
-                 class="btn btn-sm btn-outline-dark">Eliminar</a>
+              <div class="btn-group" role="group">
+                <a href="{% url 'product:product_edit' product.id %}"
+                   class="btn btn-sm btn-outline-primary">Editar</a>
+                <a href="{% url 'product:product_delete' product.id %}"
+                   class="btn btn-sm btn-outline-dark">Eliminar</a>
+              </div>
             </td>
           </tr>
         {% endfor %}

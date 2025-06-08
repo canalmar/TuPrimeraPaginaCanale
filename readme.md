@@ -25,20 +25,49 @@ _E‑commerce y blog para una librería física & online._
 | **Core**    | Home, navbar, login/logout, mensajes flash. |
 | **Product** | Catálogo público (+ búsqueda) y CRUD de productos para empleados. |
 | **Client**  | CRUD de clientes para empleados. |
-| **Blog**    | Blog público + cualquier usuario autenticado puede crear posts; autores o empleados pueden editar/eliminar. |
+| **Blog**    | Blog público + cualquier usuario autenticado puede crear posts; empleados pueden editar/eliminar. |
 
 ---
 
 ## Estructura de apps
 
 ```text
-TiendaHistorias/
-├── core/
-├── product/
-├── client/
-├── blog/
-├── static/
-└── templates/base.html
+## Estructura de apps
+
+TiendaHistorias/  
+│  
+├── core/                     # Página de inicio y navegación  
+│   ├── templates/  
+│   │   └── core/  
+│   │       ├── base.html     # Layout Bootstrap común  
+│   │       └── index.html    # Home  
+│   └── views.py  
+│  
+├── product/  
+│   ├── models.py             # Product, Category  
+│   ├── views.py              # CRUD + catálogo  
+│   ├── forms.py  
+│   └── templates/  
+│       └── product/  
+│           └── …  
+│  
+├── client/  
+│   ├── models.py             # Client  
+│   ├── views.py              # CRUD  
+│   ├── forms.py  
+│   └── templates/  
+│       └── client/  
+│           └── …  
+│  
+├── blog/  
+│   ├── models.py             # Post, Category  
+│   ├── views.py              # CRUD + listado  
+│   ├── forms.py  
+│   └── templates/  
+│       └── blog/  
+│           └── …  
+│  
+├── static/                   # CSS, imágenes (login, no-image) 
 ```
 
 ---
@@ -51,8 +80,8 @@ Django 5.2 · Python 3.13 · Bootstrap 5.3
 ## Instalación rápida
 
 ```bash
-git clone https://github.com/<usuario>/TiendaHistorias.git
-cd TiendaHistorias
+git clone https://github.com/canalmar/TuPrimeraPaginaCanale.git
+cd TuPrimeraPaginaCanale
 python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 python manage.py migrate
@@ -73,7 +102,6 @@ python manage.py runserver
 | `/productos/list/` | CRUD productos (staff) |
 | `/clientes/clients/` | CRUD clientes (staff) |
 
----
 
 ## Flujo de permisos
 

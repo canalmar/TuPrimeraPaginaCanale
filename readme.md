@@ -82,12 +82,14 @@ Django 5.2 · Python 3.13 · Bootstrap 5.3
 ```bash
 git clone https://github.com/canalmar/TuPrimeraPaginaCanale.git
 cd TuPrimeraPaginaCanale
-python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\activate
+python -m venv .venv  
+# Activar entorno virtual → Windows: .venv\Scripts\activate | Mac/Linux: source .venv/bin/activate 
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
 ```
+Abrir en el navegador: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 ---
 
@@ -116,7 +118,7 @@ Sesiones expiran al cerrar el navegador.
 ---
 
 ## Consideraciones
-Para DEMO TP subo a github db.sqlite3 y media
+Para facilitar la evaluación del Trabajo Práctico, se suben al repositorio los archivos db.sqlite3 y media/, que permiten visualizar el contenido precargado y las imágenes asociadas.
 
 
 ## Autor

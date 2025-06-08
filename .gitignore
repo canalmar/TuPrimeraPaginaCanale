@@ -7,8 +7,8 @@
 __pycache__/
 *.py[cod]
 
-# Base de datos local
-db.sqlite3
+# Base de datos local - CONSULTAR SI VA O NO... si no la subo no se ve base de datos creada
+#db.sqlite3
 
 # Archivos de usuario (VSCode, logs, etc.)
 .vscode/

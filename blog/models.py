@@ -1,14 +1,33 @@
 from django.db import models
 
-class Story(models.Model):
-    """ Representa una entrada de blog en Tienda de Historias.
-    Puede ser la reseña de un libr, una recomendación o una historia o curiosidad publicada por un autor.
-    """
-    title = models.CharField(max_length=200)
+
+class Category(models.Model):
+    name = models.CharField(max_length=40, unique=True)
+
+    class Meta:
+        ordering = ["name"]
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
+
+    def __str__(self):
+        return self.name
+
+
+class Post(models.Model):
+    title   = models.CharField(max_length=120)
+    author = models.CharField(max_length=100, blank=True)
     content = models.TextField()
-    author_name = models.CharField(max_length=100)
-    category = models.CharField(max_length=100)
-    created_at = models.DateTimeField(auto_now_add=True)
+    image   = models.ImageField(upload_to="blog", blank=True, null=True)
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="posts"
+    )
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created"]
 
     def __str__(self):
         return self.title

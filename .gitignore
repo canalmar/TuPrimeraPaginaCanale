@@ -14,5 +14,5 @@ __pycache__/
 .vscode/
 *.log
 
-# Archivos subidos por usuarios
-/media/
+# Archivos subidos por usuarios - SACO DE GITIGNORE PARA QUE SE VEAN LAS IMAGENES EN DEMO TP
+#/media/

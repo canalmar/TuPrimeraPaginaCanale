@@ -96,11 +96,11 @@ python manage.py runserver
 | URL | Descripción |
 |-----|-------------|
 | `/` | Home |
-| `/productos/` | Catálogo público |
+| `/productos/ catalogo/ ` | Catálogo público |
 | `/blog/posts/` | Blog público |
 | `/blog/posts/create/` | Crear post (login requerido) |
 | `/productos/list/` | CRUD productos (staff) |
-| `/clientes/clients/` | CRUD clientes (staff) |
+| `/clientes/` | CRUD clientes (staff) |
 
 
 ## Flujo de permisos
@@ -108,15 +108,10 @@ python manage.py runserver
 | Rol | Acceso |
 |-----|--------|
 | Visitante | Home, Catálogo, Blog |
-| Usuario autenticado | + Crear nuevo post |
-| Empleado (`is_staff`) | + Gestión productos, clientes, editar / eliminar cualquier post |
+| Usuario autenticado | + Crear nuevo post | *Ejemplo: paularamirez password: cliente1*
+| Empleado (`is_staff`) | + Gestión productos, clientes, editar / eliminar cualquier post | *Ejemplo: mariapaz password: empleado1*
 
 Sesiones expiran al cerrar el navegador.
-
----
-
-## Capturas
-_Añade imágenes en `static/README/`._
 
 ---
 
